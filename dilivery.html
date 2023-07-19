@@ -114,6 +114,48 @@
       inputElement.value = text;
     });
   </script>
+
+  
+<script>
+  // Function to save form data to local storage
+  function saveFormData() {
+    const formData = {};
+    const inputs = document.querySelectorAll('#order-form input, #order-form textarea');
+    
+    inputs.forEach(input => {
+      // Skip saving "cato" field
+      if (input.name !== 'cato') {
+        formData[input.name] = input.value;
+      }
+    });
+
+    // Save the form data as a JSON string in local storage
+    localStorage.setItem('savedFormData', JSON.stringify(formData));
+  }
+
+  // Function to populate form fields with saved data from local storage
+  function populateForm() {
+    const savedFormData = JSON.parse(localStorage.getItem('savedFormData'));
+
+    if (savedFormData) {
+      const inputs = document.querySelectorAll('#order-form input, #order-form textarea');
+
+      inputs.forEach(input => {
+        // Skip populating "cato" field
+        if (input.name !== 'cato') {
+          input.value = savedFormData[input.name] || '';
+        }
+      });
+    }
+  }
+
+  // When the document is ready, populate the form with saved data
+  document.addEventListener('DOMContentLoaded', populateForm);
+
+  // When the form is submitted, save its data to local storage
+  document.getElementById('order-form').addEventListener('submit', saveFormData);
+    </script>
+  
 </body>
 
 </html>
