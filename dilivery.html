@@ -71,8 +71,9 @@
     
     
     
-    <form action="https://formspree.io/f/xgejvvlv" method="POST">
-
+     <form action="https://formspree.io/f/xgejvvlv" method="POST" onsubmit="saveFormData()">
+       
+       
       <input type="text" id="fooditem" name="cato" readonly>
       
       <label for="name">Name:</label>
@@ -94,7 +95,7 @@
       <label for="pincode">Pincode:</label>
       <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" required>
 
-      <input type="submit" value="Order-now">
+      <input type="submit" value="Submit">
     </form>
   </div>
   
@@ -114,48 +115,58 @@
       inputElement.value = text;
     });
   </script>
-
   
+ 
 <script>
-  // Function to save form data to local storage
   function saveFormData() {
-    const formData = {};
-    const inputs = document.querySelectorAll('#order-form input, #order-form textarea');
-    
-    inputs.forEach(input => {
-      // Skip saving "cato" field
-      if (input.name !== 'cato') {
-        formData[input.name] = input.value;
-      }
-    });
+    // Get the values from the form
+    const foodItemValue = document.getElementById('fooditem').value;
+    const nameValue = document.getElementById('name').value;
+    const mobileValue = document.getElementById('mobile').value;
+    const stateValue = document.getElementById('state').value;
+    const districtValue = document.getElementById('district').value;
+    const addressValue = document.getElementById('address').value;
+    const pincodeValue = document.getElementById('pincode').value;
 
-    // Save the form data as a JSON string in local storage
-    localStorage.setItem('savedFormData', JSON.stringify(formData));
+    // Create an object to store the form data
+    const formData = {
+      fooditem: foodItemValue,
+      name: nameValue,
+      mobile: mobileValue,
+      state: stateValue,
+      district: districtValue,
+      address: addressValue,
+      pincode: pincodeValue,
+    };
+
+    // Convert the object to a JSON string
+    const formDataJSON = JSON.stringify(formData);
+
+    // Save the JSON string to local storage
+    localStorage.setItem('savedFormData', formDataJSON);
   }
 
-  // Function to populate form fields with saved data from local storage
-  function populateForm() {
-    const savedFormData = JSON.parse(localStorage.getItem('savedFormData'));
+  // Function to populate the form fields with saved data when the page loads
+  function populateFormFields() {
+    const savedFormDataJSON = localStorage.getItem('savedFormData');
 
-    if (savedFormData) {
-      const inputs = document.querySelectorAll('#order-form input, #order-form textarea');
-
-      inputs.forEach(input => {
-        // Skip populating "cato" field
-        if (input.name !== 'cato') {
-          input.value = savedFormData[input.name] || '';
-        }
-      });
+    if (savedFormDataJSON) {
+      const savedFormData = JSON.parse(savedFormDataJSON);
+      document.getElementById('fooditem').value = savedFormData.fooditem;
+      document.getElementById('name').value = savedFormData.name;
+      document.getElementById('mobile').value = savedFormData.mobile;
+      document.getElementById('state').value = savedFormData.state;
+      document.getElementById('district').value = savedFormData.district;
+      document.getElementById('address').value = savedFormData.address;
+      document.getElementById('pincode').value = savedFormData.pincode;
     }
   }
 
-  // When the document is ready, populate the form with saved data
-  document.addEventListener('DOMContentLoaded', populateForm);
+  // Call the function to populate the form fields when the page loads
+  populateFormFields();
+</script>
 
-  // When the form is submitted, save its data to local storage
-  document.getElementById('order-form').addEventListener('submit', saveFormData);
-    </script>
-  
+
 </body>
 
 </html>
