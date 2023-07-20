@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>pizza king</title>
 <link rel="stylesheet" href="style.css">
-  <style>
-    html {
-       -webkit-user-select: none; /* Safari/Chrome */
+
+</head>
+<style>
+html {
+     -webkit-user-select: none; /* Safari/Chrome */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; 
-    }
-  </style>
-</head>
+}
 
+</style>
 
 <body>
   
 <div class="header">
   Pizza king
+    <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search...">
+  </div>
 </div>  
   
   <div class="select">
@@ -36,32 +39,36 @@
   
 <div id="select1">
   
-  
-  <div class="pizzasec">
-    <div class="pizzsec1">
+    <div class="pizzasec">
+    <div class="pizzsec1 result Classic cheese pizza">
     <img class="piz1" src="foods/classic.jpeg">
     <div class="with">
       <div class="names">
-        Name:- Classic Cheese pizza
+        Name:- Classic cheese pizza
       </div>
       <div class="prices">
         Price:- 100₹
       </div>
 <div class="orders" onclick="ccc()">
   Order now!
-</div> 
-
-
 </div>
+
+
+
+    </div>
           
         
     </div>
     
-   
+    
   </div>
+    
+ 
+ 
+  
   
   <div class="pizzasec">
-    <div class="pizzsec1">
+    <div class="pizzsec1 result Homemade Prpporoni Pizza">
     <img class="piz1" src="foods/homemad.jpeg">
     <div class="with">
       <div class="names">
@@ -87,7 +94,7 @@
  
  
   <div class="pizzasec">
-    <div class="pizzsec1">
+    <div class="pizzsec1 result Chinese special pizza">
     <img class="piz1" src="foods/china.jpg">
     <div class="with">
       <div class="names">
@@ -113,7 +120,7 @@
 
  
   <div class="pizzasec">
-    <div class="pizzsec1">
+    <div class="pizzsec1 result heart pizza">
     <img class="piz1" src="foods/heartpizza.jpeg">
     <div class="with">
       <div class="names">
@@ -146,7 +153,7 @@
   
 <div id="select2">
     <div class="pizzasec">
-    <div class="pizzsec1">
+    <div class="pizzsec1 result Hamburger">
     <img class="piz1" src="foods/Hamburger.jpg">
     <div class="with">
       <div class="names">
@@ -169,7 +176,8 @@
   </div>
   
   <div class="pizzasec">
-    <div class="pizzsec1">
+    <div class="pizzsec1 result the perfact basic burger
+    ">
     <img class="piz1" src="foods/simpleburger.jpeg">
     <div class="with">
       <div class="names">
@@ -195,7 +203,7 @@
  
  
   <div class="pizzasec">
-    <div class="pizzsec1">
+    <div class="pizzsec1 result stovtop burger">
     <img class="piz1" src="foods/stovetop.jpeg">
     <div class="with">
       <div class="names">
@@ -224,7 +232,32 @@
 </div>
   
   <script src="main.js"></script>
+  <script>
+    function searchdivs() {
+
+      const searchValue = document.getElementById("searchInput").value.toLowerCase();
+
+
+      const divs = document.querySelectorAll(".result");
+
+
+      divs.forEach((div) => {
+        const content = div.textContent.toLowerCase();
+        if (content.includes(searchValue)) {
+          div.style.display = "block";
+        } else {
+          div.style.display = "none";
+        }
+      });
+      
+    }
+    
+    setInterval(searchdivs,100)
+    
+  
+
+  </script>
 
   <script src="dili.js">dili.js</script>
 </body>
-</html>
+  </html>
