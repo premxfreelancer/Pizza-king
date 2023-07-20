@@ -51,16 +51,21 @@ background: #cad5db;
   justify-content: center;
 }
 
-.pizzasec {
-  display: flex;
+
+  .pizzasec {
+    display: flex;
+    
   justify-content: center;
+  height: auto;
+  
   
   padding-top: 3vh;
   padding-bottom: 3vh;
-}
-
+  }  
+  
 .piz1 {
   width: 90vw;
+  
 }
 
 .with {
@@ -108,3 +113,13 @@ border-radius: 5vh;
   
 }
 
+#searchInput {
+  position: absolute;
+  top: 0;
+  width: 98vw;
+  left: 0;
+  border: none;
+  height: 4vh;
+  padding: 1vw;
+ 
+}
